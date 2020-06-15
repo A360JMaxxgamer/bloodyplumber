@@ -58,7 +58,7 @@ namespace BloodyPlumber
         //hier die richtigen werte für die waffenanimation einfügen und zum verschieben
 
         //
-        public const TouchLocation[] test = null;
+        public static TouchLocation[] test = Array.Empty<TouchLocation>();
 
         //Points for killing
         public const int killingPoints = 50;

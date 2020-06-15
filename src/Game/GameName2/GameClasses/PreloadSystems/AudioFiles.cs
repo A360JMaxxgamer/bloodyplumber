@@ -89,15 +89,15 @@ namespace BloodyPlumber
 
         private void loadMarioKillSounds(ScreenManager screenmanager)
         {
-            ////SoundEffect fuckYou = screenmanager.Game.Content.Load<SoundEffect>("Fuck You");
-            ////SoundEffect sonOfABitch = screenmanager.Game.Content.Load<SoundEffect>("You son of a bitch");
-            ////SoundEffect gotcha = screenmanager.Game.Content.Load<SoundEffect>("Gotcha");
-            ////SoundEffect fuckingCunt = screenmanager.Game.Content.Load<SoundEffect>("Fucking Cunt");
+            SoundEffect fuckYou = screenmanager.Game.Content.Load<SoundEffect>("Audio\\Mario Kill Sounds\\Fuck You");
+            SoundEffect sonOfABitch = screenmanager.Game.Content.Load<SoundEffect>("Audio\\Mario Kill Sounds\\You son of a bitch");
+            SoundEffect gotcha = screenmanager.Game.Content.Load<SoundEffect>("Audio\\Mario Kill Sounds\\Gotcha");
+            SoundEffect fuckingCunt = screenmanager.Game.Content.Load<SoundEffect>("Audio\\Mario Kill Sounds\\Fucking Cunt");
 
-            ////marioKillSounds.Add(fuckYou);
-            ////marioKillSounds.Add(sonOfABitch);
-            ////marioKillSounds.Add(gotcha);
-            ////marioKillSounds.Add(fuckingCunt);
+            marioKillSounds.Add(fuckYou);
+            marioKillSounds.Add(sonOfABitch);
+            marioKillSounds.Add(gotcha);
+            marioKillSounds.Add(fuckingCunt);
         }
 
         public void stopMarioSounds()

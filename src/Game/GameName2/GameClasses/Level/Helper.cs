@@ -38,13 +38,13 @@ namespace BloodyPlumber
         public override void LoadContent()
         {
             m_turtleAnimation = new Animation();
-            m_turtleStrip = screenManager.Game.Content.Load<Texture2D>("Enemies\\turtleAnimation.png");
+            m_turtleStrip = screenManager.Game.Content.Load<Texture2D>("turtleAnimation");
             m_turtleAnimation.Initialize(m_turtleStrip, -1000, -1000, 1.0f, 0.0f, 65, 90, 4, 50, true, getTileScale());
             m_mushroomAnimation = new Animation();
-            m_mushroomStrip = screenManager.Game.Content.Load<Texture2D>("Enemies\\mushroom_strip.png");
+            m_mushroomStrip = screenManager.Game.Content.Load<Texture2D>("mushroom_strip");
             m_mushroomAnimation.Initialize(m_mushroomStrip, -1000, -1000, 1.0f, 0.0f, 70, 70, 5, 50, true, getTileScale());
             m_flyingBombAnimation = new Animation();
-            m_flyingBomb = screenManager.Game.Content.Load<Texture2D>("Enemies\\bomb.png");
+            m_flyingBomb = screenManager.Game.Content.Load<Texture2D>("bomb");
             m_flyingBombAnimation.Initialize(m_flyingBomb, -1000, -1000, 1.0f, 0.0f, 180, 100, 4, 50, true, getTileScale());
         }
 
@@ -82,12 +82,12 @@ namespace BloodyPlumber
             {
                 case 0:
                     {
-                        path = "Background.xml";
+                        path = "Assets\\Background.xml";
                         break;
                     }
                 case 1:
                     {
-                        path = "Level1.xml";
+                        path = "Assets\\Level1.xml";
                         break;
                     }
             }

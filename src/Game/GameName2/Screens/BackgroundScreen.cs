@@ -76,7 +76,7 @@ namespace BloodyPlumber
         {
             
         
-                pixel = screenManager.Game.Content.Load<Texture2D>("pixelRed.png");
+                pixel = screenManager.Game.Content.Load<Texture2D>("pixelRed");
                 t_Background1 = screenManager.imageFileSystem.blue_background;
                 t_Background2 = screenManager.imageFileSystem.mountain1;               
                 t_Background3 = screenManager.imageFileSystem.cloud1;                
@@ -88,8 +88,8 @@ namespace BloodyPlumber
             m_Background3.Initialize(t_Background3,t_Background3, Vector2.Zero, 2, p, true, false);
             m_Background4.Initialize(t_Background4, t_Background4,new Vector2(0, 320), 0, p, false,false);
 
-            m_textures[0] = screenManager.Game.Content.Load<Texture2D>("Level_1\\grassTileSet.png");
-            m_textures[1] = screenManager.Game.Content.Load<Texture2D>("Coin.png");
+            m_textures[0] = screenManager.Game.Content.Load<Texture2D>("Level_1\\grassTileSet");
+            m_textures[1] = screenManager.Game.Content.Load<Texture2D>("Coin");
 
             helper.LoadContent();
             level = helper.LoadLevel(m_textures, helper.getTileScale(), p, 0, new Animation(), new Animation());
@@ -121,11 +121,9 @@ namespace BloodyPlumber
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch m_spriteBatch = ScreenManager.SpriteBatch;
+            ScreenManager.SpriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, ScreenManager.Scale);
             if (m_myTime > 10)
             {
-
-                ScreenManager.SpriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, ScreenManager.Scale);
-
                 m_Background1.Draw(screenManager.SpriteBatch);
                 m_Background2.Draw(screenManager.SpriteBatch);
                 m_Background3.Draw(screenManager.SpriteBatch);

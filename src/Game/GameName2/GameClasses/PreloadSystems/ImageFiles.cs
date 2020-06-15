@@ -73,50 +73,50 @@ namespace BloodyPlumber
             tree1 = screenmanager.Game.Content.Load<Texture2D>("Level_1\\level1_Trees1");
             tree2 = screenmanager.Game.Content.Load<Texture2D>("Level_1\\level1_Trees2");
 
-            redPixel = screenmanager.Game.Content.Load<Texture2D>("pixelRed.png");
+            redPixel = screenmanager.Game.Content.Load<Texture2D>("pixelRed");
 
-            left = screenmanager.Game.Content.Load<Texture2D>("Buttons\\Button_ArrowLeft.png");
-            right = screenmanager.Game.Content.Load<Texture2D>("Buttons\\ButtonArrowRight.png");
-            shoot = screenmanager.Game.Content.Load<Texture2D>("Buttons\\Button_Shoot.png");
-            jump = screenmanager.Game.Content.Load<Texture2D>("Buttons\\Button_Jump.png");
+            left = screenmanager.Game.Content.Load<Texture2D>("Buttons\\Button_ArrowLeft");
+            right = screenmanager.Game.Content.Load<Texture2D>("Buttons\\ButtonArrowRight");
+            shoot = screenmanager.Game.Content.Load<Texture2D>("Buttons\\Button_Shoot");
+            jump = screenmanager.Game.Content.Load<Texture2D>("Buttons\\Button_Jump");
 
-            smokeParticle = screenmanager.Game.Content.Load<Texture2D>("Smoke.png");
-            DustParticle = screenmanager.Game.Content.Load<Texture2D>("Dust.png");
-            laserProjectile = screenmanager.Game.Content.Load<Texture2D>("projektil.png");
-            akProjectile = screenmanager.Game.Content.Load<Texture2D>("Weapons\\bullet.png");
+            smokeParticle = screenmanager.Game.Content.Load<Texture2D>("Smoke");
+            DustParticle = screenmanager.Game.Content.Load<Texture2D>("Dust");
+            laserProjectile = screenmanager.Game.Content.Load<Texture2D>("projektil");
+            akProjectile = screenmanager.Game.Content.Load<Texture2D>("bullet");
 
-            flyingHead = screenmanager.Game.Content.Load<Texture2D>("Animation\\Mario_Head.png");
+            flyingHead = screenmanager.Game.Content.Load<Texture2D>("Mario_Head");
 
-            redCoin = screenmanager.Game.Content.Load<Texture2D>("Coin.png");
+            redCoin = screenmanager.Game.Content.Load<Texture2D>("Coin");
 
-            level1_TileStrip = screenmanager.Game.Content.Load<Texture2D>("Level_1\\grassTileSet.png");
+            level1_TileStrip = screenmanager.Game.Content.Load<Texture2D>("Level_1\\grassTileSet");
 
-            boogeyMan = screenmanager.Game.Content.Load<Texture2D>("Sensenmann.png");
+            boogeyMan = screenmanager.Game.Content.Load<Texture2D>("Sensenmann");
 
-            crocProjectile = screenmanager.Game.Content.Load<Texture2D>("orb.png");
+            crocProjectile = screenmanager.Game.Content.Load<Texture2D>("orb");
         }
 
         public void loadAnimation(ScreenManager screenmanager)
         {
-            Texture2D mudPixel = screenmanager.Game.Content.Load<Texture2D>("Level_1\\pixel.png");
+            Texture2D mudPixel = screenmanager.Game.Content.Load<Texture2D>("pixel");
             mudAnimation.Initialize(mudPixel, 1000, 1000, 0, 0.01f, 8, 8, 1, 1000, true, new Vector2(1, 1));
 
-            Texture2D playerSpriteStrip = screenmanager.Game.Content.Load<Texture2D>("Animation\\mario_Animation.png");
+            Texture2D playerSpriteStrip = screenmanager.Game.Content.Load<Texture2D>("mario_Animation");
             playerAnimation.Initialize(playerSpriteStrip, -1000, -1000, 1, 0.0f, 108, 154, 8, 50, true, new Vector2(1,1));
 
-            Texture2D pixel = screenmanager.Game.Content.Load<Texture2D>("pixelRed.png");
+            Texture2D pixel = screenmanager.Game.Content.Load<Texture2D>("pixelRed");
             bloodAnimation.Initialize(pixel, 1000, 1000, 0, 0.01f, 8, 8, 1, 1000, true, new Vector2(1, 1));
 
-            Texture2D akStrip = screenmanager.Game.Content.Load<Texture2D>("Weapons\\AK_Aktuell.png");
+            Texture2D akStrip = screenmanager.Game.Content.Load<Texture2D>("AK_Aktuell");
             akAnimation.Initialize(akStrip, -1000, -1000, 1, 0.0f, 140, 58, 1, 1000, false,new Vector2(1,1));
 
-            Texture2D mouthStrip = screenmanager.Game.Content.Load<Texture2D>("Animation\\mouth.png");
+            Texture2D mouthStrip = screenmanager.Game.Content.Load<Texture2D>("mouth");
             mouth.Initialize(mouthStrip, -1000, -1000, 1, 0.0f, 30, 15, 4, 30, true, new Vector2(1, 1));
 
-            Texture2D laserStrip = screenmanager.Game.Content.Load<Texture2D>("Weapons\\laser.png");
+            Texture2D laserStrip = screenmanager.Game.Content.Load<Texture2D>("laser");
             laserAnimation.Initialize(laserStrip, -1000, -1000, 1, 0.0f, 140, 58, 1, 1000, false, new Vector2(1, 1));
 
-            Texture2D crocodileStrip = screenmanager.Game.Content.Load<Texture2D>("Enemies\\CrocAnimation.png");
+            Texture2D crocodileStrip = screenmanager.Game.Content.Load<Texture2D>("CrocAnimation");
             crocAnimation.Initialize(crocodileStrip,-1000, -1000, 1, 0.0f, 247, 175,8, 50, true, new Vector2(1,1));
         }
     }
