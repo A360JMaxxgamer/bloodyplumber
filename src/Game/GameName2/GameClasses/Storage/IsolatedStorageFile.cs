@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.Search;
 using System.IO;
 
 namespace BloodyPlumber
 {
     public class IsolatedStorageFile : IDisposable
     {
-        StorageFolder storageFolder;
+        private readonly string gamepath;
 
         private IsolatedStorageFile()
         {
-            storageFolder = ApplicationData.Current.LocalFolder;
+            gamepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BloodyPlumber");
         }
 
         static public IsolatedStorageFile GetUserStoreForApplication()
@@ -29,7 +25,7 @@ namespace BloodyPlumber
 
         public void CreateDirectory(string dir)
         {
-            storageFolder.CreateFolderAsync(dir).AsTask().Wait();
+            Directory.CreateDirectory(gamepath);
         }
 
         public IsolatedStorageFileStream CreateFile(string path)
@@ -56,11 +52,11 @@ namespace BloodyPlumber
             {
                 case FileMode.Create:
                     stream = Task.Run(
-                        async () =>
+                        () =>
                         {
                             try
                             {
-                                return await storageFolder.OpenStreamForWriteAsync(path, CreationCollisionOption.ReplaceExisting);
+                                return new FileStream(Path.Combine(gamepath, path), FileMode.Create);
                             }
                             catch (IOException e)
                             {
@@ -71,11 +67,11 @@ namespace BloodyPlumber
 
                 case FileMode.Open:
                     stream = Task.Run(
-                        async () =>
+                        () =>
                         {
                             try
                             {
-                                return await storageFolder.OpenStreamForReadAsync(path);
+                                return new FileStream(Path.Combine(gamepath, path), FileMode.Open);
                             }
                             catch (IOException e)
                             {
@@ -89,36 +85,12 @@ namespace BloodyPlumber
 
         public bool DirectoryExists(string directoryName)
         {
-            return Task.Run(
-                async () =>
-                {
-                    try
-                    {
-                        var folder = await storageFolder.GetFolderAsync(directoryName);
-                        return folder != null;
-                    }
-                    catch (FileNotFoundException)
-                    {
-                        return false;
-                    }
-                }).Result;
+            return Directory.Exists(Path.Combine(gamepath, directoryName));
         }
 
         public bool FileExists(string fileName)
         {
-            return Task.Run(
-                async () =>
-                {
-                    try
-                    {
-                        var file = await storageFolder.GetFileAsync(fileName);
-                        return file != null;
-                    }
-                    catch (FileNotFoundException)
-                    {
-                        return false;
-                    }
-                }).Result;
+            return File.Exists(Path.Combine(gamepath, fileName));
         }
 
         public string[] GetFileNames()
@@ -128,36 +100,7 @@ namespace BloodyPlumber
 
         public string[] GetFileNames(string path)
         {
-            var files = Task.Run(
-                async () =>
-                {
-                    string root = string.Empty;
-                    try
-                    {
-                        if (!string.IsNullOrEmpty(path))
-                            root = Path.GetDirectoryName(path);
-                    }
-                    catch
-                    {
-                        return null;
-                    }
-                    var folder = storageFolder;
-                    try
-                    {
-                        if (!string.IsNullOrEmpty(root))
-                            folder = await storageFolder.GetFolderAsync(root);
-                        return await folder.GetFilesAsync();
-                    }
-                    catch
-                    {
-                        return null;
-                    }
-                }).Result;
-            var result = new string[files.Count];
-            int index = 0;
-            foreach (var f in files)
-                result[index++] = f.Name;
-            return result;
+            return Directory.GetFiles(Path.Combine(gamepath, path)).ToArray();
         }
 
         public string[] GetDirectoryNames()
@@ -167,60 +110,17 @@ namespace BloodyPlumber
 
         public string[] GetDirectoryNames(string path)
         {
-            var folders = Task.Run(
-                async () =>
-                {
-                    string root = string.Empty;
-                    try
-                    {
-                        if (!string.IsNullOrEmpty(path))
-                            root = Path.GetDirectoryName(path);
-                    }
-                    catch
-                    {
-                        return null;
-                    }
-                    var folder = storageFolder;
-                    try
-                    {
-                        if (!string.IsNullOrEmpty(root))
-                            folder = await storageFolder.GetFolderAsync(root);
-                        return await folder.GetFoldersAsync();
-                    }
-                    catch
-                    {
-                        return null;
-                    }
-                }).Result;
-            if (folders != null)
-            {
-                var result = new string[folders.Count];
-                int index = 0;
-                foreach (var f in folders)
-                    result[index++] = f.Name;
-                return result;
-            }
-            return null;
+            return Directory.GetDirectories(Path.Combine(gamepath, path)).ToArray();
         }
 
         public void DeleteDirectory(string path)
         {
-            Task.Run(
-                async () =>
-                {
-                    var folder = await storageFolder.GetFolderAsync(path);
-                    await folder.DeleteAsync();
-                }).Wait();
+            Directory.Delete(Path.Combine(gamepath, path));
         }
 
         public void DeleteFile(string path)
         {
-            Task.Run(
-                async () =>
-                {
-                    var file = await storageFolder.GetFileAsync(path);
-                    await file.DeleteAsync();
-                }).Wait();
+            File.Delete(Path.Combine(gamepath, path));
         }
     }
 }
